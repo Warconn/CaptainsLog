@@ -14,12 +14,14 @@ export type CreateRestaurantInput = {
   name: string;
   description: string;
   city: string;
+  isopen?: boolean | null;
 };
 
 export type ModelRestaurantConditionInput = {
   name?: ModelStringInput | null;
   description?: ModelStringInput | null;
   city?: ModelStringInput | null;
+  isopen?: ModelBooleanInput | null;
   and?: Array<ModelRestaurantConditionInput | null> | null;
   or?: Array<ModelRestaurantConditionInput | null> | null;
   not?: ModelRestaurantConditionInput | null;
@@ -64,12 +66,20 @@ export type ModelSizeInput = {
   between?: Array<number | null> | null;
 };
 
+export type ModelBooleanInput = {
+  ne?: boolean | null;
+  eq?: boolean | null;
+  attributeExists?: boolean | null;
+  attributeType?: ModelAttributeTypes | null;
+};
+
 export type Restaurant = {
   __typename: "Restaurant";
   id: string;
   name: string;
   description: string;
   city: string;
+  isopen?: boolean | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -79,6 +89,7 @@ export type UpdateRestaurantInput = {
   name?: string | null;
   description?: string | null;
   city?: string | null;
+  isopen?: boolean | null;
 };
 
 export type DeleteRestaurantInput = {
@@ -90,6 +101,7 @@ export type ModelRestaurantFilterInput = {
   name?: ModelStringInput | null;
   description?: ModelStringInput | null;
   city?: ModelStringInput | null;
+  isopen?: ModelBooleanInput | null;
   and?: Array<ModelRestaurantFilterInput | null> | null;
   or?: Array<ModelRestaurantFilterInput | null> | null;
   not?: ModelRestaurantFilterInput | null;
@@ -123,6 +135,7 @@ export type CreateRestaurantMutation = {
   name: string;
   description: string;
   city: string;
+  isopen?: boolean | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -133,6 +146,7 @@ export type UpdateRestaurantMutation = {
   name: string;
   description: string;
   city: string;
+  isopen?: boolean | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -143,6 +157,7 @@ export type DeleteRestaurantMutation = {
   name: string;
   description: string;
   city: string;
+  isopen?: boolean | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -153,6 +168,7 @@ export type GetRestaurantQuery = {
   name: string;
   description: string;
   city: string;
+  isopen?: boolean | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -165,6 +181,7 @@ export type ListRestaurantsQuery = {
     name: string;
     description: string;
     city: string;
+    isopen?: boolean | null;
     createdAt: string;
     updatedAt: string;
   } | null> | null;
@@ -177,6 +194,7 @@ export type OnCreateRestaurantSubscription = {
   name: string;
   description: string;
   city: string;
+  isopen?: boolean | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -187,6 +205,7 @@ export type OnUpdateRestaurantSubscription = {
   name: string;
   description: string;
   city: string;
+  isopen?: boolean | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -197,6 +216,7 @@ export type OnDeleteRestaurantSubscription = {
   name: string;
   description: string;
   city: string;
+  isopen?: boolean | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -216,6 +236,7 @@ export class APIService {
           name
           description
           city
+          isopen
           createdAt
           updatedAt
         }
@@ -242,6 +263,7 @@ export class APIService {
           name
           description
           city
+          isopen
           createdAt
           updatedAt
         }
@@ -268,6 +290,7 @@ export class APIService {
           name
           description
           city
+          isopen
           createdAt
           updatedAt
         }
@@ -291,6 +314,7 @@ export class APIService {
           name
           description
           city
+          isopen
           createdAt
           updatedAt
         }
@@ -317,6 +341,7 @@ export class APIService {
             name
             description
             city
+            isopen
             createdAt
             updatedAt
           }
@@ -349,6 +374,7 @@ export class APIService {
           name
           description
           city
+          isopen
           createdAt
           updatedAt
         }
@@ -367,6 +393,7 @@ export class APIService {
           name
           description
           city
+          isopen
           createdAt
           updatedAt
         }
@@ -385,6 +412,7 @@ export class APIService {
           name
           description
           city
+          isopen
           createdAt
           updatedAt
         }

@@ -22,7 +22,8 @@ export class AppComponent implements OnInit {
     this.createForm = this.fb.group({
       'name': ['', Validators.required],
       'description': ['', Validators.required],
-      'city': ['', Validators.required]
+      'city': ['', Validators.required], 
+      'isopen': [false]
     });
     this.api.ListRestaurants().then(event => {
       this.restaurants = event.items;

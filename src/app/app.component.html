@@ -13,6 +13,10 @@
         <label>City: </label>
         <input type="text" formControlName="city" autocomplete="off">
       </div>
+      <div>
+        <label>isOpen: </label>
+        <input type="text" formControlName="isopen" autocomplete="off">
+      </div>
       <button type="submit">Submit</button>
     </form>
   </div>
@@ -21,6 +25,7 @@
     <div>{{ restaurant.city }}</div>
     <div>{{ restaurant.name }}</div>
     <div>{{ restaurant.description }}</div>
+    <div>{{ restaurant.isopen }}</div>
   </div>
 
   <amplify-sign-out></amplify-sign-out>

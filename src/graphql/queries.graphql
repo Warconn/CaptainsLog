@@ -5,6 +5,7 @@ query GetRestaurant($id: ID!) {
     name
     description
     city
+    isopen
     createdAt
     updatedAt
   }
@@ -20,6 +21,7 @@ query ListRestaurants(
       name
       description
       city
+      isopen
       createdAt
       updatedAt
     }

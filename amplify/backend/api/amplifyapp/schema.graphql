@@ -3,4 +3,5 @@ type Restaurant @model {
   name: String!
   description: String!
   city: String!
+  isopen: Boolean
 }

@@ -8,6 +8,7 @@ mutation CreateRestaurant(
     name
     description
     city
+    isopen
     createdAt
     updatedAt
   }
@@ -21,6 +22,7 @@ mutation UpdateRestaurant(
     name
     description
     city
+    isopen
     createdAt
     updatedAt
   }
@@ -34,6 +36,7 @@ mutation DeleteRestaurant(
     name
     description
     city
+    isopen
     createdAt
     updatedAt
   }
