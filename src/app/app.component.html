@@ -1,9 +1,4 @@
 <amplify-authenticator>
-  <div>
-    Restaurants App
-    <amplify-sign-out></amplify-sign-out>
-  </div>
-
   <div class="form-body">
     <form autocomplete="off" [formGroup]="createForm" (ngSubmit)="onCreate(createForm.value)">
       <div>
@@ -28,4 +23,5 @@
     <div>{{ restaurant.description }}</div>
   </div>
 
+  <amplify-sign-out></amplify-sign-out>
 </amplify-authenticator>
