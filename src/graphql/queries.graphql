@@ -1,27 +1,48 @@
 # this is an auto generated file. This will be overwritten
-query GetRestaurant($id: ID!) {
-  getRestaurant(id: $id) {
+query GetEntry($id: ID!) {
+  getEntry(id: $id) {
     id
-    name
-    description
-    city
-    isopen
+    timestamp
+    log
+    captain
     createdAt
     updatedAt
   }
 }
-query ListRestaurants(
-  $filter: ModelRestaurantFilterInput
+query ListEntrys(
+  $filter: ModelEntryFilterInput
   $limit: Int
   $nextToken: String
 ) {
-  listRestaurants(filter: $filter, limit: $limit, nextToken: $nextToken) {
+  listEntrys(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      timestamp
+      log
+      captain
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetCaptain($id: ID!) {
+  getCaptain(id: $id) {
+    id
+    name
+    createdAt
+    updatedAt
+  }
+}
+query ListCaptains(
+  $filter: ModelCaptainFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listCaptains(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
       name
-      description
-      city
-      isopen
       createdAt
       updatedAt
     }

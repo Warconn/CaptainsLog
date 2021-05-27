@@ -1,7 +1,12 @@
-type Restaurant @model {
+type Entry @model {
+  id: ID!
+  timestamp: String!
+  log: String!
+  captain: String!
+}
+
+type Captain @model {
   id: ID!
   name: String!
-  description: String!
-  city: String!
-  isopen: Boolean
 }
+

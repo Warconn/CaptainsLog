@@ -1,42 +1,72 @@
 # this is an auto generated file. This will be overwritten
-mutation CreateRestaurant(
-  $input: CreateRestaurantInput!
-  $condition: ModelRestaurantConditionInput
+mutation CreateEntry(
+  $input: CreateEntryInput!
+  $condition: ModelEntryConditionInput
 ) {
-  createRestaurant(input: $input, condition: $condition) {
+  createEntry(input: $input, condition: $condition) {
     id
-    name
-    description
-    city
-    isopen
+    timestamp
+    log
+    captain
     createdAt
     updatedAt
   }
 }
-mutation UpdateRestaurant(
-  $input: UpdateRestaurantInput!
-  $condition: ModelRestaurantConditionInput
+mutation UpdateEntry(
+  $input: UpdateEntryInput!
+  $condition: ModelEntryConditionInput
 ) {
-  updateRestaurant(input: $input, condition: $condition) {
+  updateEntry(input: $input, condition: $condition) {
     id
-    name
-    description
-    city
-    isopen
+    timestamp
+    log
+    captain
     createdAt
     updatedAt
   }
 }
-mutation DeleteRestaurant(
-  $input: DeleteRestaurantInput!
-  $condition: ModelRestaurantConditionInput
+mutation DeleteEntry(
+  $input: DeleteEntryInput!
+  $condition: ModelEntryConditionInput
 ) {
-  deleteRestaurant(input: $input, condition: $condition) {
+  deleteEntry(input: $input, condition: $condition) {
+    id
+    timestamp
+    log
+    captain
+    createdAt
+    updatedAt
+  }
+}
+mutation CreateCaptain(
+  $input: CreateCaptainInput!
+  $condition: ModelCaptainConditionInput
+) {
+  createCaptain(input: $input, condition: $condition) {
     id
     name
-    description
-    city
-    isopen
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateCaptain(
+  $input: UpdateCaptainInput!
+  $condition: ModelCaptainConditionInput
+) {
+  updateCaptain(input: $input, condition: $condition) {
+    id
+    name
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteCaptain(
+  $input: DeleteCaptainInput!
+  $condition: ModelCaptainConditionInput
+) {
+  deleteCaptain(input: $input, condition: $condition) {
+    id
+    name
     createdAt
     updatedAt
   }

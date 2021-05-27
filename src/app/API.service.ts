@@ -9,22 +9,20 @@ export interface SubscriptionResponse<T> {
   value: GraphQLResult<T>;
 }
 
-export type CreateRestaurantInput = {
+export type CreateEntryInput = {
   id?: string | null;
-  name: string;
-  description: string;
-  city: string;
-  isopen?: boolean | null;
+  timestamp: string;
+  log: string;
+  captain: string;
 };
 
-export type ModelRestaurantConditionInput = {
-  name?: ModelStringInput | null;
-  description?: ModelStringInput | null;
-  city?: ModelStringInput | null;
-  isopen?: ModelBooleanInput | null;
-  and?: Array<ModelRestaurantConditionInput | null> | null;
-  or?: Array<ModelRestaurantConditionInput | null> | null;
-  not?: ModelRestaurantConditionInput | null;
+export type ModelEntryConditionInput = {
+  timestamp?: ModelStringInput | null;
+  log?: ModelStringInput | null;
+  captain?: ModelStringInput | null;
+  and?: Array<ModelEntryConditionInput | null> | null;
+  or?: Array<ModelEntryConditionInput | null> | null;
+  not?: ModelEntryConditionInput | null;
 };
 
 export type ModelStringInput = {
@@ -66,45 +64,64 @@ export type ModelSizeInput = {
   between?: Array<number | null> | null;
 };
 
-export type ModelBooleanInput = {
-  ne?: boolean | null;
-  eq?: boolean | null;
-  attributeExists?: boolean | null;
-  attributeType?: ModelAttributeTypes | null;
-};
-
-export type Restaurant = {
-  __typename: "Restaurant";
+export type Entry = {
+  __typename: "Entry";
   id: string;
-  name: string;
-  description: string;
-  city: string;
-  isopen?: boolean | null;
+  timestamp: string;
+  log: string;
+  captain: string;
   createdAt: string;
   updatedAt: string;
 };
 
-export type UpdateRestaurantInput = {
+export type UpdateEntryInput = {
+  id: string;
+  timestamp?: string | null;
+  log?: string | null;
+  captain?: string | null;
+};
+
+export type DeleteEntryInput = {
+  id: string;
+};
+
+export type CreateCaptainInput = {
+  id?: string | null;
+  name: string;
+};
+
+export type ModelCaptainConditionInput = {
+  name?: ModelStringInput | null;
+  and?: Array<ModelCaptainConditionInput | null> | null;
+  or?: Array<ModelCaptainConditionInput | null> | null;
+  not?: ModelCaptainConditionInput | null;
+};
+
+export type Captain = {
+  __typename: "Captain";
+  id: string;
+  name: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type UpdateCaptainInput = {
   id: string;
   name?: string | null;
-  description?: string | null;
-  city?: string | null;
-  isopen?: boolean | null;
 };
 
-export type DeleteRestaurantInput = {
+export type DeleteCaptainInput = {
   id: string;
 };
 
-export type ModelRestaurantFilterInput = {
+export type ModelEntryFilterInput = {
   id?: ModelIDInput | null;
-  name?: ModelStringInput | null;
-  description?: ModelStringInput | null;
-  city?: ModelStringInput | null;
-  isopen?: ModelBooleanInput | null;
-  and?: Array<ModelRestaurantFilterInput | null> | null;
-  or?: Array<ModelRestaurantFilterInput | null> | null;
-  not?: ModelRestaurantFilterInput | null;
+  timestamp?: ModelStringInput | null;
+  log?: ModelStringInput | null;
+  captain?: ModelStringInput | null;
+  and?: Array<ModelEntryFilterInput | null> | null;
+  or?: Array<ModelEntryFilterInput | null> | null;
+  not?: ModelEntryFilterInput | null;
 };
 
 export type ModelIDInput = {
@@ -123,100 +140,174 @@ export type ModelIDInput = {
   size?: ModelSizeInput | null;
 };
 
-export type ModelRestaurantConnection = {
-  __typename: "ModelRestaurantConnection";
-  items?: Array<Restaurant | null> | null;
+export type ModelEntryConnection = {
+  __typename: "ModelEntryConnection";
+  items?: Array<Entry | null> | null;
   nextToken?: string | null;
 };
 
-export type CreateRestaurantMutation = {
-  __typename: "Restaurant";
+export type ModelCaptainFilterInput = {
+  id?: ModelIDInput | null;
+  name?: ModelStringInput | null;
+  and?: Array<ModelCaptainFilterInput | null> | null;
+  or?: Array<ModelCaptainFilterInput | null> | null;
+  not?: ModelCaptainFilterInput | null;
+};
+
+export type ModelCaptainConnection = {
+  __typename: "ModelCaptainConnection";
+  items?: Array<Captain | null> | null;
+  nextToken?: string | null;
+};
+
+export type CreateEntryMutation = {
+  __typename: "Entry";
   id: string;
-  name: string;
-  description: string;
-  city: string;
-  isopen?: boolean | null;
+  timestamp: string;
+  log: string;
+  captain: string;
   createdAt: string;
   updatedAt: string;
 };
 
-export type UpdateRestaurantMutation = {
-  __typename: "Restaurant";
+export type UpdateEntryMutation = {
+  __typename: "Entry";
   id: string;
-  name: string;
-  description: string;
-  city: string;
-  isopen?: boolean | null;
+  timestamp: string;
+  log: string;
+  captain: string;
   createdAt: string;
   updatedAt: string;
 };
 
-export type DeleteRestaurantMutation = {
-  __typename: "Restaurant";
+export type DeleteEntryMutation = {
+  __typename: "Entry";
   id: string;
-  name: string;
-  description: string;
-  city: string;
-  isopen?: boolean | null;
+  timestamp: string;
+  log: string;
+  captain: string;
   createdAt: string;
   updatedAt: string;
 };
 
-export type GetRestaurantQuery = {
-  __typename: "Restaurant";
+export type CreateCaptainMutation = {
+  __typename: "Captain";
   id: string;
   name: string;
-  description: string;
-  city: string;
-  isopen?: boolean | null;
   createdAt: string;
   updatedAt: string;
 };
 
-export type ListRestaurantsQuery = {
-  __typename: "ModelRestaurantConnection";
+export type UpdateCaptainMutation = {
+  __typename: "Captain";
+  id: string;
+  name: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type DeleteCaptainMutation = {
+  __typename: "Captain";
+  id: string;
+  name: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type GetEntryQuery = {
+  __typename: "Entry";
+  id: string;
+  timestamp: string;
+  log: string;
+  captain: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type ListEntrysQuery = {
+  __typename: "ModelEntryConnection";
   items?: Array<{
-    __typename: "Restaurant";
+    __typename: "Entry";
     id: string;
-    name: string;
-    description: string;
-    city: string;
-    isopen?: boolean | null;
+    timestamp: string;
+    log: string;
+    captain: string;
     createdAt: string;
     updatedAt: string;
   } | null> | null;
   nextToken?: string | null;
 };
 
-export type OnCreateRestaurantSubscription = {
-  __typename: "Restaurant";
+export type GetCaptainQuery = {
+  __typename: "Captain";
   id: string;
   name: string;
-  description: string;
-  city: string;
-  isopen?: boolean | null;
   createdAt: string;
   updatedAt: string;
 };
 
-export type OnUpdateRestaurantSubscription = {
-  __typename: "Restaurant";
+export type ListCaptainsQuery = {
+  __typename: "ModelCaptainConnection";
+  items?: Array<{
+    __typename: "Captain";
+    id: string;
+    name: string;
+    createdAt: string;
+    updatedAt: string;
+  } | null> | null;
+  nextToken?: string | null;
+};
+
+export type OnCreateEntrySubscription = {
+  __typename: "Entry";
   id: string;
-  name: string;
-  description: string;
-  city: string;
-  isopen?: boolean | null;
+  timestamp: string;
+  log: string;
+  captain: string;
   createdAt: string;
   updatedAt: string;
 };
 
-export type OnDeleteRestaurantSubscription = {
-  __typename: "Restaurant";
+export type OnUpdateEntrySubscription = {
+  __typename: "Entry";
+  id: string;
+  timestamp: string;
+  log: string;
+  captain: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnDeleteEntrySubscription = {
+  __typename: "Entry";
+  id: string;
+  timestamp: string;
+  log: string;
+  captain: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnCreateCaptainSubscription = {
+  __typename: "Captain";
   id: string;
   name: string;
-  description: string;
-  city: string;
-  isopen?: boolean | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnUpdateCaptainSubscription = {
+  __typename: "Captain";
+  id: string;
+  name: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnDeleteCaptainSubscription = {
+  __typename: "Captain";
+  id: string;
+  name: string;
   createdAt: string;
   updatedAt: string;
 };
@@ -225,18 +316,17 @@ export type OnDeleteRestaurantSubscription = {
   providedIn: "root"
 })
 export class APIService {
-  async CreateRestaurant(
-    input: CreateRestaurantInput,
-    condition?: ModelRestaurantConditionInput
-  ): Promise<CreateRestaurantMutation> {
-    const statement = `mutation CreateRestaurant($input: CreateRestaurantInput!, $condition: ModelRestaurantConditionInput) {
-        createRestaurant(input: $input, condition: $condition) {
+  async CreateEntry(
+    input: CreateEntryInput,
+    condition?: ModelEntryConditionInput
+  ): Promise<CreateEntryMutation> {
+    const statement = `mutation CreateEntry($input: CreateEntryInput!, $condition: ModelEntryConditionInput) {
+        createEntry(input: $input, condition: $condition) {
           __typename
           id
-          name
-          description
-          city
-          isopen
+          timestamp
+          log
+          captain
           createdAt
           updatedAt
         }
@@ -250,20 +340,19 @@ export class APIService {
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
-    return <CreateRestaurantMutation>response.data.createRestaurant;
+    return <CreateEntryMutation>response.data.createEntry;
   }
-  async UpdateRestaurant(
-    input: UpdateRestaurantInput,
-    condition?: ModelRestaurantConditionInput
-  ): Promise<UpdateRestaurantMutation> {
-    const statement = `mutation UpdateRestaurant($input: UpdateRestaurantInput!, $condition: ModelRestaurantConditionInput) {
-        updateRestaurant(input: $input, condition: $condition) {
+  async UpdateEntry(
+    input: UpdateEntryInput,
+    condition?: ModelEntryConditionInput
+  ): Promise<UpdateEntryMutation> {
+    const statement = `mutation UpdateEntry($input: UpdateEntryInput!, $condition: ModelEntryConditionInput) {
+        updateEntry(input: $input, condition: $condition) {
           __typename
           id
-          name
-          description
-          city
-          isopen
+          timestamp
+          log
+          captain
           createdAt
           updatedAt
         }
@@ -277,20 +366,19 @@ export class APIService {
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
-    return <UpdateRestaurantMutation>response.data.updateRestaurant;
+    return <UpdateEntryMutation>response.data.updateEntry;
   }
-  async DeleteRestaurant(
-    input: DeleteRestaurantInput,
-    condition?: ModelRestaurantConditionInput
-  ): Promise<DeleteRestaurantMutation> {
-    const statement = `mutation DeleteRestaurant($input: DeleteRestaurantInput!, $condition: ModelRestaurantConditionInput) {
-        deleteRestaurant(input: $input, condition: $condition) {
+  async DeleteEntry(
+    input: DeleteEntryInput,
+    condition?: ModelEntryConditionInput
+  ): Promise<DeleteEntryMutation> {
+    const statement = `mutation DeleteEntry($input: DeleteEntryInput!, $condition: ModelEntryConditionInput) {
+        deleteEntry(input: $input, condition: $condition) {
           __typename
           id
-          name
-          description
-          city
-          isopen
+          timestamp
+          log
+          captain
           createdAt
           updatedAt
         }
@@ -304,17 +392,88 @@ export class APIService {
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
-    return <DeleteRestaurantMutation>response.data.deleteRestaurant;
+    return <DeleteEntryMutation>response.data.deleteEntry;
   }
-  async GetRestaurant(id: string): Promise<GetRestaurantQuery> {
-    const statement = `query GetRestaurant($id: ID!) {
-        getRestaurant(id: $id) {
+  async CreateCaptain(
+    input: CreateCaptainInput,
+    condition?: ModelCaptainConditionInput
+  ): Promise<CreateCaptainMutation> {
+    const statement = `mutation CreateCaptain($input: CreateCaptainInput!, $condition: ModelCaptainConditionInput) {
+        createCaptain(input: $input, condition: $condition) {
           __typename
           id
           name
-          description
-          city
-          isopen
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <CreateCaptainMutation>response.data.createCaptain;
+  }
+  async UpdateCaptain(
+    input: UpdateCaptainInput,
+    condition?: ModelCaptainConditionInput
+  ): Promise<UpdateCaptainMutation> {
+    const statement = `mutation UpdateCaptain($input: UpdateCaptainInput!, $condition: ModelCaptainConditionInput) {
+        updateCaptain(input: $input, condition: $condition) {
+          __typename
+          id
+          name
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <UpdateCaptainMutation>response.data.updateCaptain;
+  }
+  async DeleteCaptain(
+    input: DeleteCaptainInput,
+    condition?: ModelCaptainConditionInput
+  ): Promise<DeleteCaptainMutation> {
+    const statement = `mutation DeleteCaptain($input: DeleteCaptainInput!, $condition: ModelCaptainConditionInput) {
+        deleteCaptain(input: $input, condition: $condition) {
+          __typename
+          id
+          name
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <DeleteCaptainMutation>response.data.deleteCaptain;
+  }
+  async GetEntry(id: string): Promise<GetEntryQuery> {
+    const statement = `query GetEntry($id: ID!) {
+        getEntry(id: $id) {
+          __typename
+          id
+          timestamp
+          log
+          captain
           createdAt
           updatedAt
         }
@@ -325,23 +484,22 @@ export class APIService {
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
-    return <GetRestaurantQuery>response.data.getRestaurant;
+    return <GetEntryQuery>response.data.getEntry;
   }
-  async ListRestaurants(
-    filter?: ModelRestaurantFilterInput,
+  async ListEntrys(
+    filter?: ModelEntryFilterInput,
     limit?: number,
     nextToken?: string
-  ): Promise<ListRestaurantsQuery> {
-    const statement = `query ListRestaurants($filter: ModelRestaurantFilterInput, $limit: Int, $nextToken: String) {
-        listRestaurants(filter: $filter, limit: $limit, nextToken: $nextToken) {
+  ): Promise<ListEntrysQuery> {
+    const statement = `query ListEntrys($filter: ModelEntryFilterInput, $limit: Int, $nextToken: String) {
+        listEntrys(filter: $filter, limit: $limit, nextToken: $nextToken) {
           __typename
           items {
             __typename
             id
-            name
-            description
-            city
-            isopen
+            timestamp
+            log
+            captain
             createdAt
             updatedAt
           }
@@ -361,62 +519,158 @@ export class APIService {
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
-    return <ListRestaurantsQuery>response.data.listRestaurants;
+    return <ListEntrysQuery>response.data.listEntrys;
   }
-  OnCreateRestaurantListener: Observable<
-    SubscriptionResponse<OnCreateRestaurantSubscription>
-  > = API.graphql(
-    graphqlOperation(
-      `subscription OnCreateRestaurant {
-        onCreateRestaurant {
+  async GetCaptain(id: string): Promise<GetCaptainQuery> {
+    const statement = `query GetCaptain($id: ID!) {
+        getCaptain(id: $id) {
           __typename
           id
           name
-          description
-          city
-          isopen
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      id
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <GetCaptainQuery>response.data.getCaptain;
+  }
+  async ListCaptains(
+    filter?: ModelCaptainFilterInput,
+    limit?: number,
+    nextToken?: string
+  ): Promise<ListCaptainsQuery> {
+    const statement = `query ListCaptains($filter: ModelCaptainFilterInput, $limit: Int, $nextToken: String) {
+        listCaptains(filter: $filter, limit: $limit, nextToken: $nextToken) {
+          __typename
+          items {
+            __typename
+            id
+            name
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <ListCaptainsQuery>response.data.listCaptains;
+  }
+  OnCreateEntryListener: Observable<
+    SubscriptionResponse<OnCreateEntrySubscription>
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateEntry {
+        onCreateEntry {
+          __typename
+          id
+          timestamp
+          log
+          captain
           createdAt
           updatedAt
         }
       }`
     )
-  ) as Observable<SubscriptionResponse<OnCreateRestaurantSubscription>>;
+  ) as Observable<SubscriptionResponse<OnCreateEntrySubscription>>;
 
-  OnUpdateRestaurantListener: Observable<
-    SubscriptionResponse<OnUpdateRestaurantSubscription>
+  OnUpdateEntryListener: Observable<
+    SubscriptionResponse<OnUpdateEntrySubscription>
   > = API.graphql(
     graphqlOperation(
-      `subscription OnUpdateRestaurant {
-        onUpdateRestaurant {
+      `subscription OnUpdateEntry {
+        onUpdateEntry {
           __typename
           id
-          name
-          description
-          city
-          isopen
+          timestamp
+          log
+          captain
           createdAt
           updatedAt
         }
       }`
     )
-  ) as Observable<SubscriptionResponse<OnUpdateRestaurantSubscription>>;
+  ) as Observable<SubscriptionResponse<OnUpdateEntrySubscription>>;
 
-  OnDeleteRestaurantListener: Observable<
-    SubscriptionResponse<OnDeleteRestaurantSubscription>
+  OnDeleteEntryListener: Observable<
+    SubscriptionResponse<OnDeleteEntrySubscription>
   > = API.graphql(
     graphqlOperation(
-      `subscription OnDeleteRestaurant {
-        onDeleteRestaurant {
+      `subscription OnDeleteEntry {
+        onDeleteEntry {
           __typename
           id
-          name
-          description
-          city
-          isopen
+          timestamp
+          log
+          captain
           createdAt
           updatedAt
         }
       }`
     )
-  ) as Observable<SubscriptionResponse<OnDeleteRestaurantSubscription>>;
+  ) as Observable<SubscriptionResponse<OnDeleteEntrySubscription>>;
+
+  OnCreateCaptainListener: Observable<
+    SubscriptionResponse<OnCreateCaptainSubscription>
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateCaptain {
+        onCreateCaptain {
+          __typename
+          id
+          name
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<SubscriptionResponse<OnCreateCaptainSubscription>>;
+
+  OnUpdateCaptainListener: Observable<
+    SubscriptionResponse<OnUpdateCaptainSubscription>
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnUpdateCaptain {
+        onUpdateCaptain {
+          __typename
+          id
+          name
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<SubscriptionResponse<OnUpdateCaptainSubscription>>;
+
+  OnDeleteCaptainListener: Observable<
+    SubscriptionResponse<OnDeleteCaptainSubscription>
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnDeleteCaptain {
+        onDeleteCaptain {
+          __typename
+          id
+          name
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<SubscriptionResponse<OnDeleteCaptainSubscription>>;
 }

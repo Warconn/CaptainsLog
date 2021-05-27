@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { APIService } from './API.service';
-import { Restaurant } from '../types/restaurant';
+import { Captain } from '../types/captain';
+import { Entry } from '../types/entry';
+import { Auth } from 'aws-amplify';
 
 @Component({
   selector: 'app-root',
@@ -14,35 +16,47 @@ export class AppComponent implements OnInit {
   public createForm: FormGroup;
 
   /* declare restaurants variable */
-  restaurants: Array<Restaurant>;
+  entries: Array<Entry>;
 
-  constructor(private api: APIService, private fb: FormBuilder) { }
+  constructor(private api: APIService, private fb: FormBuilder) 
+  {   }
 
   async ngOnInit() {
     this.createForm = this.fb.group({
-      'name': ['', Validators.required],
-      'description': ['', Validators.required],
-      'city': ['', Validators.required], 
-      'isopen': [false]
+      'log': ['', Validators.required], 
     });
-    this.api.ListRestaurants().then(event => {
-      this.restaurants = event.items;
+    this.api.ListEntrys().then(event => {
+      this.entries = event.items;
     });
   
     /* subscribe to new restaurants being created */
-    this.api.OnCreateRestaurantListener.subscribe( (event: any) => {
-      const newRestaurant = event.value.data.onCreateRestaurant;
-      this.restaurants = [newRestaurant, ...this.restaurants];
+    this.api.OnCreateEntryListener.subscribe( (event: any) => {
+      const newEntry = event.value.data.onCreateRestaurant;
+      this.entries = [newEntry, ...this.entries];
     });
   }
 
-  public onCreate(restaurant: Restaurant) {
-    this.api.CreateRestaurant(restaurant).then(event => {
+  public onCreate(entry: Entry) {
+    var email = "";
+    //add timestamp and currently logged in user 
+    Auth.currentAuthenticatedUser().then((user) => {
+      console.log('email: ' + user.attributes.email);
+      console.log('user: ' + user.attributes.username);
+
+      email = user.attributes.email;
+    });
+    entry.captain = email;
+    entry.timestamp = Date.now().toString();
+
+    console.log("Attempting to create new entry: ");
+    console.log(entry);
+
+    this.api.CreateEntry(entry).then(event => {
       console.log('item created!');
       this.createForm.reset();
     })
     .catch(e => {
-      console.log('error creating restaurant...', e);
+      console.log('error creating entry...', e);
     });
   }
 }
