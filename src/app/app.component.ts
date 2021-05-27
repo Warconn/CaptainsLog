@@ -31,7 +31,12 @@ export class AppComponent implements OnInit {
   
     /* subscribe to new restaurants being created */
     this.api.OnCreateEntryListener.subscribe( (event: any) => {
-      const newEntry = event.value.data.onCreateRestaurant;
+      const newEntry = event.value.data.OnCreateEntry;
+      console.log("Event Data:");
+      console.log(event.value.data);
+      
+      console.log("New Entry Found:");
+      console.log(newEntry);
       this.entries = [newEntry, ...this.entries];
     });
   }
@@ -40,13 +45,10 @@ export class AppComponent implements OnInit {
     var email = "";
     //add timestamp and currently logged in user 
     Auth.currentAuthenticatedUser().then((user) => {
-      console.log('email: ' + user.attributes.email);
-      console.log('user: ' + user.attributes.username);
-
       email = user.attributes.email;
     });
     entry.captain = email;
-    entry.timestamp = new Date().toTimeString();
+    entry.timestamp = Date.now().toString()
 
     console.log("Attempting to create new entry: ");
     console.log(entry);
