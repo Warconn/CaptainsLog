@@ -46,7 +46,7 @@ export class AppComponent implements OnInit {
       email = user.attributes.email;
     });
     entry.captain = email;
-    entry.timestamp = Date.now().toString();
+    entry.timestamp = new Date().toTimeString();
 
     console.log("Attempting to create new entry: ");
     console.log(entry);
