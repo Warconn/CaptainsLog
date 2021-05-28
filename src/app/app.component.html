@@ -7,10 +7,9 @@
   <div class="form-body">
     <form autocomplete="off" [formGroup]="createForm" (ngSubmit)="onCreate(createForm.value)">
       <div>
-        <label>Log: </label>
-        <input type="text" formControlName="log" autocomplete="off">
+        <textarea matInput placeholder="Log Entry..." formControlName="log" autocomplete="off" cols="90%"></textarea>
       </div>
-      <button type="submit">Submit</button>
+      <button type="submit" mat-button>Submit</button>
     </form>
   </div>
 
