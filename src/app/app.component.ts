@@ -5,6 +5,7 @@ import { Captain } from '../types/captain';
 import { Entry } from '../types/entry';
 import { Auth } from 'aws-amplify';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
