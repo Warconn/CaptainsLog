@@ -29,15 +29,10 @@ export class AppComponent implements OnInit {
       this.entries = event.items;
     });
   
-    /* subscribe to new restaurants being created */
     this.api.OnCreateEntryListener.subscribe( (event: any) => {
-      const newEntry = event.value.data.OnCreateEntry;
-      console.log("Event Data:");
-      console.log(event.value.data);
-      
-      console.log("New Entry Found:");
-      console.log(newEntry);
-      this.entries = [newEntry, ...this.entries];
+      console.log("Caught new item created");
+      const newEntry = event.value.data.onCreateEntry;      
+      this.entries.push(newEntry);
     });
   }
 
