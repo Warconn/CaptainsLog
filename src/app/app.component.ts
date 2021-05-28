@@ -26,6 +26,8 @@ export class AppComponent implements OnInit {
       'log': ['', Validators.required], 
     });
     this.api.ListEntrys().then(event => {
+      event.items.sort((x, y) => +new Date(x.createdAt) - +new Date(y.createdAt));
+      
       this.entries = event.items;
     });
   

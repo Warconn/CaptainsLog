@@ -1,4 +1,5 @@
-type Entry @model {
+type Entry @model 
+{
   id: ID!
   timestamp: String!
   log: String!
